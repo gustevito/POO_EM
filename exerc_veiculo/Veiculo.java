@@ -1,6 +1,7 @@
 public class Veiculo{
     private final double consumoPorLitro = 10; // constante
     private Placa placa;
+    private double limiteTanque = 50;
     private double combustivel;
     
     public Veiculo(Placa placa){
@@ -17,11 +18,23 @@ public class Veiculo{
     }
 
     public double getCombustivelNoTanque(){
+        if (combustivel > limiteTanque){
+            combustivel = limiteTanque;
+            return combustivel;
+        }
+        
         return combustivel;
     }
 
+    public double getLimiteTanque(){
+        return limiteTanque;
+    }
+    
     public double abastece(double litros){
         if (litros > 0.0){
+            if(litros > limiteTanque){
+                litros = limiteTanque;
+            }
             combustivel += litros;
         }
         return combustivel;
