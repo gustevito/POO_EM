@@ -1,52 +1,109 @@
 import java.util.Scanner;
-public class App{
-    public static void main(String args[]){
-        Veiculo v1 = new Veiculo("AAA1A11");
-        Veiculo v2 = new Veiculo("BBB2A22");
-        Veiculo v3 = new Veiculo("CCC3C33");
-        Veiculo v4 = new Veiculo("DDD4D44");
-        Veiculo v5 = new Veiculo("KKK4K69");
 
-        Scanner in = new Scanner(in);
-        System.out.println("Selecione uma das seguintes opções:");
-        System.out.println("1 - Abastecer\n2 - Dirigir\n3 - Fim");
-        int n = in.nextInt();
-        switch (n) {
-            case 1:
-            
-                break;
-            case 2:
+public class App {
+    public static void main(String args[]) {
+        Veiculo[] veiculos = new Veiculo[5];
 
-                break;
-            case 3:
+        veiculos[0] = new Veiculo(new Placa("Brasil", "AAA1A11"));
+        veiculos[1] = new Veiculo(new Placa("Venezuela", "BBB2A22"));
+        veiculos[2] = new Veiculo(new Placa("Colombia", "CCC3C33"));
+        veiculos[3] = new Veiculo(new Placa("Uruguai", "DDD4D44"));
+        veiculos[4] = new Veiculo(new Placa("Brasil", "KKK4K69"));
 
-                break;
-            default:
-            System.out.println("Por favor, digite um valor válido (de 1 a 3)!");
-                break;
-        }        
+        Scanner in = new Scanner(System.in);
 
-        /* String pais = args[0];
-        String codigo = args[1];
-        Double combustivelNecessario = Double.parseDouble(args[2]);
-        Double distanciaParaPercorrer = Double.parseDouble(args[3]);
+        boolean caseLoop = true;
 
-        Placa p1 = new Placa(pais, codigo);
-        
-        Veiculo v = new Veiculo(p1);
-        System.out.println("Dados do veiculo antes de abastecer:");
-        System.out.println(v);
-        System.out.println("----------------");
+        while (caseLoop) {
+            System.out.println("Selecione uma das seguintes opções:");
+            System.out.println("1 - Abastecer\n2 - Dirigir\n3 - Fim");
+            int n = in.nextInt();
+            in.nextLine(); // limpa o ENTER após o nextInt()
 
-        v.abastece(combustivelNecessario);
-        System.out.println("Dados do veiculo depois de abastecer:");
-        System.out.println(v);
-        System.out.println("----------------");
+            switch (n) {
+                case 1: {
+                    boolean valido = false;
+                    String placa;
 
-        v.dirige(distanciaParaPercorrer);
-        System.out.println("Dados do veiculo depois de percorrer " + distanciaParaPercorrer +  "km:");
-        System.out.println(v);
-        System.out.println("----------------");
-        */ 
+                    do {
+                        System.out.println("Informe a placa do veículo que você deseja abastecer:");
+                        placa = in.nextLine();
+
+                        Veiculo veiculoSelecionado = null;
+                        for (Veiculo v : veiculos) {
+                            // Compara a string da placa com o código da placa do veículo
+                            if (placa.equals(v.getPlaca().getCodigo())) {
+                                veiculoSelecionado = v;
+                                break;
+                            }
+                        }
+
+                        if (veiculoSelecionado != null) {
+                            valido = true;
+                            System.out.println("Placa selecionada: " + placa);
+                            System.out.println("Informe a quantidade de combustível que você deseja abastecer:");
+                            double litros = in.nextDouble();
+                            in.nextLine(); // limpa o ENTER
+                            veiculoSelecionado.abastece(litros);
+                            System.out.println("-----------------------");
+                            System.out.println("Veículo Placa: " + veiculoSelecionado.getPlaca().getCodigo() +
+                                               "\nAbastecido com " + veiculoSelecionado.getCombustivelNoTanque() + " L.");
+                            System.out.println("-----------------------");
+                        } else {
+                            System.err.println("Erro: placa inválida! Tente novamente.");
+                        }
+
+                    } while (!valido);
+
+                    break;
+                }
+                case 2: {
+                    boolean valido = false;
+                    String placa;
+
+                    do {
+                        System.out.println("Informe a placa do veículo que você deseja utilizar:");
+                        placa = in.nextLine();
+
+                        Veiculo veiculoSelecionado = null;
+                        for (Veiculo v : veiculos) {
+                            if (placa.equals(v.getPlaca().getCodigo())) {
+                                veiculoSelecionado = v;
+                                break;
+                            }
+                        }
+
+                        if (veiculoSelecionado != null) {
+                            valido = true;
+                            System.out.println("Placa selecionada: " + placa);
+                            System.out.println("Informe a distância que você deseja percorrer:");
+                            double distanciaParaPercorrer = in.nextDouble();
+                            in.nextLine(); // limpa o ENTER
+                            double distanciaPercorrida = veiculoSelecionado.dirige(distanciaParaPercorrer);
+                            System.out.println("-----------------------");
+                            System.out.println("Distância percorrida: " + distanciaPercorrida + " km.");
+                            System.out.println("-----------------------");
+                        } else {
+                            System.err.println("Erro: placa inválida! Tente novamente.");
+                        }
+                    } while (!valido);
+
+                    break;
+                }
+                case 3:
+                    System.out.println("Veículos cadastrados no sistema:");
+                    for (Veiculo v : veiculos) {
+                        System.out.println(v);
+                    }
+                    caseLoop = false;
+                    break;
+
+                default:
+                    System.out.println("Por favor, digite um valor válido (de 1 a 3)!");
+                    break;
+            }
+        }
+
+        in.close();
     }
 }
