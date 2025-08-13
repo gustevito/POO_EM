@@ -3,7 +3,7 @@ public class Cofre {
     int qtdMoedas;
     
     public Cofre(){
-
+        
     }
 
     public boolean insere(Moeda moeda){ return false; }
