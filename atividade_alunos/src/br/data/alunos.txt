@@ -1,0 +1,10 @@
+20231001;Lucas Almeida;2003-04-15  
+20231002;Juliana Ribeiro;2002-08-22  
+20231003;Rafael Martins;2001-11-05  
+20231004;Fernanda Gomes;2003-01-30  
+20231005;Gustavo Henrique;2000-07-19  
+20231006;Amanda Silva;2002-03-10  
+20231007;Bruno Carvalho;2001-09-25  
+20231008;Isabela Santos;2003-12-08  
+20231009;Diego Pereira;2000-05-14  
+20231010;Patrícia Lima;2002-10-03
