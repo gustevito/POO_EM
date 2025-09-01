@@ -20,9 +20,14 @@ public class Passagem {
     }
 
     public double custoBagagem(int[] pesos, int qtd) {
-        if()
+        for (int i = 0; i < pesos.length; i++) {
+            qtd++;
+            if (pesos[i] >= 1) {
+                custoBagagem = pesos[i] * 0.5;
+            }
 
-        
+        }
+
     }
 
     public String getCpf() {
