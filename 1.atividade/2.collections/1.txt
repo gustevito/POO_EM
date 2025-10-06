@@ -1,0 +1,3 @@
+Escreva um programa em Java que lê um arquivo texto e imprime uma lista de todas as
+palavras do arquivo em ordem alfabética junto com o número de vezes cada palavra apareceu
+no arquivo. Utilize um mapa para manter o cálculo da frequência de cada palavra
