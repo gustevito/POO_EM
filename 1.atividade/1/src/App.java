@@ -19,11 +19,11 @@ public class App {
 		while (opcao != 6) {
 			System.out.println("\nInsira o numero referente à opção que deseja executar:");
 			System.out.println("1 - Buscar palavra em arquivos");
-			System.out.println("2 - Buscar múltiplas palavras em arquivos");
+			System.out.println("2 - Buscar mais de uma palavra em arquivos");
 			System.out.println("3 - Listar palavras de um arquivo");
 			System.out.println("4 - Palavras comuns entre dois arquivos");
 			System.out.println("5 - Top N palavras mais frequentes");
-			System.out.println("20 - Sair");
+			System.out.println("6 - Sair");
 
 			System.out.print("Escolha uma opção: ");
 
@@ -83,7 +83,7 @@ public class App {
 		}
 
 		scanner.close();
-		System.out.println("\n-----------------------------------------------");
+		System.out.println("-----------------------------------------------");
 		System.out.println("## FIM ##");
 	}
 }

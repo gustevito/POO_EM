@@ -125,15 +125,28 @@ public class TextAnalysis {
 		Map<String, Integer> palavras = arquivoParaPalavras.get(fileName);
 
 		if (palavras == null) {
-			System.out.println("Arquivo não encontrado ou vazio.");
+			System.out.println("arquivo não encontrado");
 			return;
 		}
 
-		palavras.entrySet()
-				.stream()
-				.sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
-				.limit(n)
-				.forEach(entry -> System.out.printf("%-20s : %d%n", entry.getKey(), entry.getValue()));
+		Map<String, Integer> palavrasOrdenadas = new TreeMap<>(
+				(palavra1, palavra2) -> {
+					int comp = palavras.get(palavra2).compareTo(palavras.get(palavra1));
+					if (comp == 0) {
+						return palavra1.compareTo(palavra2);
+					}
+					return comp;
+				});
+		palavrasOrdenadas.putAll(palavras);
+
+		int contador = 0;
+		for (Map.Entry<String, Integer> entry : palavrasOrdenadas.entrySet()) {
+			if (contador >= n) {
+				break;
+			}
+			System.out.printf("%-20s : %d%n", entry.getKey(), entry.getValue());
+			contador++;
+		}
 	}
 
 	private void carregaDados(String fileName) {
