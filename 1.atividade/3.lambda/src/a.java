@@ -10,8 +10,8 @@ public class a {
 
         // b
         String concatena = list.stream()
-                .map(p -> p.charAt(0))
-                
+                .map(p -> p.String.valueOf());
+
         System.out.println(concatena);
     }
 }
