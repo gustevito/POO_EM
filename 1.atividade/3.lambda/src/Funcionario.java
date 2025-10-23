@@ -33,14 +33,14 @@ public class Funcionario {
 		return insalubridade;
 	}
 
-	public void aumentaSalBase(double taxa){
+	public void aumentaSalBase(double taxa) {
 		salarioBase *= taxa;
 	}
-	
+
 	private double inss() {
-		if (getSalarioBase() <= 5000.0){
-		return (getSalarioBase() * 0.045);
-		}else{
+		if (getSalarioBase() <= 5000.0) {
+			return (getSalarioBase() * 0.045);
+		} else {
 			return 5000.0 * 0.045;
 		}
 	}
