@@ -21,5 +21,13 @@ public class App {
         lst.stream()
                 .filter(p -> p.getIdade() > 15)
                 .forEach(System.out::println);
+
+        // imprimir media de idade
+        double media = lst.stream()
+                .mapToInt(p -> p.getIdade())
+                .average()
+                .orElse(0);
+
+        System.out.println("media de idade: " + media);
     }
 }
