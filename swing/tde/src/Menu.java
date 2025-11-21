@@ -1,46 +1,66 @@
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 public class Menu {
-    // main window
     JFrame window;
-    Container con;
+    JPanel mainPanel, titlePanel, buttonPanel;
+    JLabel title, subtitle;
+    JButton enterButton, optionsButton, exitButton;
 
-    // comps
-    JPanel menuTitlePanel, menuButtonPanel;
-    JLabel menuTitle;
-    JButton menuButton, optionsButton;
+    Font titleFont = new Font("SansSerif", Font.BOLD, 32);
+    Font buttonFont = new Font("SansSerif", Font.PLAIN, 16);
 
-    Font titleFont = new Font("Century", Font.PLAIN, 30);
-    Font normalFont = new Font("Century", Font.PLAIN, 14);
-
-    public static void main(String[] args) throws Exception {
-        new Menu();
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Menu::new);
     }
 
     public Menu() {
         window = new JFrame("Pipoca & Guaraná");
-        window.setSize(800, 600);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLayout(new FlowLayout());
+        window.setSize(800, 600);
+        window.setLocationRelativeTo(null);
+        window.setResizable(false);
 
-        con = window.getContentPane();
+        mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBackground(new Color(25, 25, 25));
 
-        menuTitlePanel = new JPanel();
-        menuTitlePanel.setBackground(Color.black);
+        titlePanel = new JPanel();
+        titlePanel.setBackground(new Color(25, 25, 25));
+        title = new JLabel("Pipoca & Guaraná", SwingConstants.CENTER);
+        title.setForeground(Color.WHITE);
+        title.setFont(titleFont);
+        titlePanel.add(title);
+        subtitle = new JLabel("Seu cinema digital em Java Swing");
+        subtitle.setForeground(Color.white);
+        titlePanel.add(subtitle);
 
-        menuTitle = new JLabel("Pipoca & Guaraná");
-        menuTitle.setFont(titleFont);
-        menuTitle.setForeground(Color.white);
+        buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(25, 25, 25));
+        buttonPanel.setLayout(new GridLayout(3, 1, 0, 15));
 
-        menuButtonPanel = new JPanel();
+        enterButton = createButton("Entrar");
+        optionsButton = createButton("Opções");
+        exitButton = createButton("Sair");
 
-        menuButton = new JButton("Entrar");
-        // fazer grid com os botoes (n tem grid ainda)
+        buttonPanel.add(enterButton);
+        buttonPanel.add(optionsButton);
+        buttonPanel.add(exitButton);
 
-        menuTitlePanel.add(menuTitle);
+        mainPanel.add(titlePanel, BorderLayout.CENTER);
+        mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(100, 200, 100, 200));
 
-        con.add(menuTitlePanel);
+        window.add(mainPanel);
         window.setVisible(true);
+    }
+
+    private JButton createButton(String text) {
+        JButton button = new JButton(text);
+        button.setFont(buttonFont);
+        button.setFocusPainted(false);
+        button.setBackground(new Color(45, 45, 45));
+        button.setForeground(Color.WHITE);
+        button.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        return button;
     }
 }
